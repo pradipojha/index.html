@@ -16,7 +16,7 @@ body {
     overflow: hidden;
 }
 
-/* Falling hearts */
+
 .heart {
     position: absolute;
     top: -60px;
@@ -75,7 +75,7 @@ button {
     margin-top: 25px;
 }
 
-/* Firecracker burst */
+
 .fire {
     position: absolute;
     font-size: 30px;
@@ -105,12 +105,12 @@ button {
     </div>
 </div>
 
-<!-- Working Sounds -->
+
 <audio id="fireSound" src="https://freesound.org/data/previews/341/341695_6261190-lq.mp3"></audio>
 <audio id="music" src="https://freesound.org/data/previews/250/250629_4592400-lq.mp3" loop></audio>
 
 <script>
-// NO button impossible to click
+
 const noBtn = document.getElementById("noBtn");
 const card = document.querySelector(".card");
 
@@ -122,19 +122,19 @@ noBtn.addEventListener("mouseenter", () => {
     noBtn.style.top = Math.random() * maxY + "px";
 });
 
-// YES button magic
+
 document.getElementById("yesBtn").addEventListener("click", () => {
     document.getElementById("cat").style.display = "block";
 
-    // Working sound
+    
     const fireSound = document.getElementById("fireSound");
     fireSound.currentTime = 0;
     fireSound.play();
 
-    // Romantic music
+    
     document.getElementById("music").play();
 
-    // Firecracker visuals
+    
     for (let i = 0; i < 20; i++) {
         const fire = document.createElement("div");
         fire.className = "fire";
@@ -146,7 +146,7 @@ document.getElementById("yesBtn").addEventListener("click", () => {
     }
 });
 
-// Create falling hearts
+
 const heartEmojis = ["💖","💘","💗","💕","💞","💓"];
 
 for (let i = 0; i < 45; i++) {
@@ -162,3 +162,4 @@ for (let i = 0; i < 45; i++) {
 
 </body>
 </html>
+
