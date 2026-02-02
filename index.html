@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Will You Be My Valentine kanxu? 💖</title>
+<title>Will You Be My Valentine? 💘</title>
 
 <style>
 body {
@@ -16,43 +16,44 @@ body {
     overflow: hidden;
 }
 
-/* Big hearts background */
-body::before {
-    content: "💖 💕 💗 💘 💓 💞 💖 💕 💗 💘";
+
+.heart {
     position: absolute;
-    font-size: 80px;
-    opacity: 0.3;
-    animation: float 20s linear infinite;
+    top: -60px;
+    font-size: 35px;
+    animation: fall linear infinite;
+    opacity: 0.75;
 }
 
-@keyframes float {
-    from { transform: translateY(100vh); }
-    to { transform: translateY(-200vh); }
+@keyframes fall {
+    from { transform: translateY(-60px) rotate(0deg); }
+    to { transform: translateY(120vh) rotate(360deg); }
 }
 
 .card {
     background: white;
-    padding: 30px 40px;
-    border-radius: 20px;
+    padding: 40px 50px;
+    border-radius: 30px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    z-index: 1;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 10;
 }
 
 h1 {
     color: hotpink;
-    font-size: 32px;
+    font-size: 36px;
 }
 
 .buttons {
-    margin-top: 25px;
     position: relative;
-    height: 60px;
+    height: 90px;
+    margin-top: 25px;
 }
 
 button {
     font-size: 18px;
-    padding: 10px 25px;
+    padding: 12px 28px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
@@ -66,12 +67,24 @@ button {
 #noBtn {
     background: lightgray;
     position: absolute;
-    left: 120px;
+    left: 150px;
 }
 
 #cat {
     display: none;
-    margin-top: 20px;
+    margin-top: 25px;
+}
+
+
+.fire {
+    position: absolute;
+    font-size: 30px;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
 }
 </style>
 </head>
@@ -79,34 +92,74 @@ button {
 <body>
 
 <div class="card">
-    <h1>Will you be my Valentine? 💘</h1>
+    <h1>Will you be my Valentine? 💖</h1>
 
     <div class="buttons">
-        <button id="yesBtn">YES 💖</button>
+        <button id="yesBtn">YES 💕</button>
         <button id="noBtn">NO 😜</button>
     </div>
 
     <div id="cat">
-        <h2>YAYYYYY!!! 💃🐱</h2>
-        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="200">
+        <h2>YAYYYY 💃🐱💘</h2>
+        <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" width="220">
     </div>
 </div>
 
-<script>
-const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * 250;
-    const y = Math.random() * 40;
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+<audio id="fireSound" src="https://www.soundjay.com/fireworks/fireworks-1.mp3"></audio>
+<audio id="music" src="https://www.soundjay.com/human/heartbeat-01.mp3" loop></audio>
+
+<script>
+
+const noBtn = document.getElementById("noBtn");
+const card = document.querySelector(".card");
+
+noBtn.addEventListener("mouseenter", () => {
+    const maxX = card.clientWidth - noBtn.offsetWidth;
+    const maxY = card.clientHeight - noBtn.offsetHeight;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
 });
+
 
 document.getElementById("yesBtn").addEventListener("click", () => {
     document.getElementById("cat").style.display = "block";
+
+   
+    const fireSound = document.getElementById("fireSound");
+    fireSound.currentTime = 0;
+    fireSound.play();
+    setTimeout(() => fireSound.pause(), 5000);
+
+    
+    document.getElementById("music").play();
+
+   
+    for (let i = 0; i < 20; i++) {
+        const fire = document.createElement("div");
+        fire.className = "fire";
+        fire.innerText = "🎆";
+        fire.style.left = Math.random() * 100 + "vw";
+        fire.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(fire);
+        setTimeout(() => fire.remove(), 1000);
+    }
 });
+
+
+const heartEmojis = ["💖","💘","💗","💕","💞","💓"];
+
+for (let i = 0; i < 45; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+    heart.style.fontSize = (30 + Math.random() * 40) + "px";
+    document.body.appendChild(heart);
+}
 </script>
 
 </body>
 </html>
-
