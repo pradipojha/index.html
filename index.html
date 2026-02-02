@@ -101,13 +101,13 @@ button {
 
     <div id="cat">
         <h2>YAYYYY 💃🐱💘</h2>
-        <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="200">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtpczU3eGMxN215Zjg4ZzVobGgwZXgzcWxib2EwOXd2eHZpc2xqeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fu3OjBQiCs3s0ZuLY3/giphy.gif" width="220">
     </div>
 </div>
 
-<!-- Sounds -->
-<audio id="fireSound" src="https://www.soundjay.com/fireworks/fireworks-1.mp3"></audio>
-<audio id="music" src="https://www.soundjay.com/human/heartbeat-01.mp3" loop></audio>
+<!-- Working Sounds -->
+<audio id="fireSound" src="https://freesound.org/data/previews/341/341695_6261190-lq.mp3"></audio>
+<audio id="music" src="https://freesound.org/data/previews/250/250629_4592400-lq.mp3" loop></audio>
 
 <script>
 // NO button impossible to click
@@ -126,11 +126,10 @@ noBtn.addEventListener("mouseenter", () => {
 document.getElementById("yesBtn").addEventListener("click", () => {
     document.getElementById("cat").style.display = "block";
 
-    // Firecracker sound (5 seconds)
+    // Working sound
     const fireSound = document.getElementById("fireSound");
     fireSound.currentTime = 0;
     fireSound.play();
-    setTimeout(() => fireSound.pause(), 5000);
 
     // Romantic music
     document.getElementById("music").play();
@@ -163,5 +162,3 @@ for (let i = 0; i < 45; i++) {
 
 </body>
 </html>
-
-
